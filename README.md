@@ -1,4 +1,4 @@
-git"personal_expense_tracker" 
+
 # Personal Expense Tracker
 
 A simple Python-based console application to track daily expenses.
