@@ -13,7 +13,9 @@ from pprint import pprint
 ]
 '''
 
-expenses = {}
+expenses={}
+with open ("expenses.json","r") as f:
+    expenses = json.load(f)
 
 
 def add_expense():
@@ -82,10 +84,17 @@ def add_others_expense():
     expenses[currdate]["others"] += expense
 
 def view_singleday_expenses():
-    d=input("Please enter the from date in DD-MM-YYYY format:")
+    try:
+        d=input("Please enter the date in DD-MM-YYYY format:")
+        converted_d = datetime.strptime(d,"%d-%m-%Y")
+
+    except ValueError as e:
+        print(f"Invalid Format\nThe date Must be in DD-MM-YYYY Format only!!")
+        return
 
     with open("expenses.json","r") as f:
         expenses_dict = json.load(f)
+
     total = 0
 
     if d not in expenses_dict:
